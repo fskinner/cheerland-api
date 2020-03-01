@@ -34,7 +34,7 @@ config :cheerland_api, CheerlandApiWeb.Guardian,
   issuer: "CheerlandApi",
   ttl: {7, :days},
   allowed_drift: 2000,
-  secret_key: "G5XlyVNL0H27ZY7tW4N/Jrt+4xvk0UYRxqOA2uksQm8qanQbbo7ojSN0+4FaC/Fv"
+  secret_key: System.get_env("SECRET") || "Zq5AjKfcIqTCQn6WZhNGhAaBmhdAZCeKKFc9TSNZy6ts4tk3ymjEJbKpFwAYIdfr"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

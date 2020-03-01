@@ -5,10 +5,19 @@ defmodule CheerlandApiWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug(CheerlandApiWeb.Guardian.AuthPipeline)
+    plug(CheerlandApiWeb.CurrentUserPlug)
+  end
+
   scope "/api", CheerlandApiWeb do
     pipe_through :api
 
     resources "/rooms", RoomController, except: [:new, :edit]
     resources "/users", UserController, except: [:new, :edit]
+  end
+
+  scope "/", CheerlandApiWeb do
+    pipe_through([:api, :auth])
   end
 end

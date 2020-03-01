@@ -1,17 +1,11 @@
-defmodule CheerlandApiWeb.Guardian.AuthErrorHandler do
+defmodule CheerlandApiWeb.AuthErrorHandler do
   import Plug.Conn
 
+  @behaviour Guardian.Plug.ErrorHandler
+
+  @impl Guardian.Plug.ErrorHandler
   def auth_error(conn, {type, _reason}, _opts) do
-    errors =
-      case type do
-        :unauthenticated -> %{message: :forbidden, code: 403}
-        _ -> %{message: :internal_server_error, code: 500}
-      end
-
-    body = Poison.encode!(%{errors: %{detail: to_string(errors.message)}})
-
-    conn
-    |> put_resp_header("content-type", "application/json")
-    |> send_resp(errors.code, body)
+    body = Jason.encode!(%{message: to_string(type)})
+    send_resp(conn, 401, body)
   end
 end
