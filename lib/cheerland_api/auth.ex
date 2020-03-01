@@ -8,6 +8,16 @@ defmodule CheerlandApi.Auth do
 
   alias CheerlandApi.Auth.User
 
+  defp check_empty_user(user) do
+    case user do
+      %User{} ->
+        {:ok, user}
+
+      _ ->
+        {:error, :not_found}
+    end
+  end
+
   @doc """
   Returns the list of users.
 
@@ -36,6 +46,14 @@ defmodule CheerlandApi.Auth do
 
   """
   def get_user!(id), do: Repo.get!(User, id)
+
+  @doc """
+  Gets a single user by its email.
+  """
+  def get_user_by_email(email) do
+    Repo.get_by(User, email: email)
+    |> check_empty_user
+  end
 
   @doc """
   Creates a user.
@@ -100,5 +118,19 @@ defmodule CheerlandApi.Auth do
   """
   def change_user(%User{} = user) do
     User.changeset(user, %{})
+  end
+
+  @doc """
+  Returns {:ok, jwt, claims} for auth purposes.
+  Otherwise {:error, :unauthorized}
+  """
+  def authenticate(%{user: user, password: password}) do
+    case Bcrypt.verify_pass(password, user.encrypted_password) do
+      true ->
+        CheerlandApiWeb.Guardian.encode_and_sign(user)
+
+      _ ->
+        {:error, :unauthorized}
+    end
   end
 end

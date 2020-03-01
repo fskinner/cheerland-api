@@ -1,6 +1,22 @@
 defmodule CheerlandApiWeb.ErrorView do
   use CheerlandApiWeb, :view
 
+  def render("401.json", _assigns) do
+    %{errors: %{detail: "Unauthorized"}}
+  end
+
+  def render("403.json", _assigns) do
+    %{errors: %{detail: "Forbidden"}}
+  end
+
+  def render("404.json", _assigns) do
+    %{errors: %{detail: "Not Found"}}
+  end
+
+  def render("500.json", _assigns) do
+    %{errors: %{detail: "Internal Server Error"}}
+  end
+
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.
   # def render("500.json", _assigns) do

@@ -1,5 +1,5 @@
 defmodule CheerlandApiWeb.Guardian do
-  use Guardian, otp_app: :todo_with_auth
+  use Guardian, otp_app: :cheerland_api
 
   def subject_for_token(resource, _claims) do
     sub = to_string(resource.id)

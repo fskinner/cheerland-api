@@ -39,7 +39,6 @@ defmodule CheerlandApi.MixProject do
       {:ecto_sql, "~> 3.0"},
       {:postgrex, ">= 0.0.0"},
       {:gettext, "~> 0.11"},
-      {:comeonin, "~> 5.3"},
       {:ex_machina, "~> 2.3", only: :test},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},

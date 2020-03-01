@@ -13,6 +13,9 @@ defmodule CheerlandApiWeb.Router do
   scope "/api", CheerlandApiWeb do
     pipe_through :api
 
+    post("/sessions", SessionController, :create)
+    delete("/sessions", SessionController, :delete)
+
     resources "/rooms", RoomController, except: [:new, :edit]
     resources "/users", UserController, except: [:new, :edit]
   end
