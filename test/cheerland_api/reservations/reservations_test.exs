@@ -1,4 +1,4 @@
-defmodule CheerlandApi.ReservationsTest do
+defmodule CheerlandApi.Reservations.ReservationsTest do
   use CheerlandApi.DataCase
 
   alias CheerlandApi.Reservations

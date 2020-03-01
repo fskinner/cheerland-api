@@ -17,7 +17,9 @@ defmodule CheerlandApi.Reservations.Room do
   def changeset(room, attrs) do
     room
     |> cast(attrs, [:label, :description, :max_beds, :women_only, :group, :photos_url])
-    |> validate_required([:label, :description, :max_beds, :women_only, :group, :photos_url])
+    |> validate_required([:label, :max_beds, :women_only, :group])
+    |> validate_length(:label, min: 2, max: 40)
+    |> validate_inclusion(:max_beds, 1..1000)
     |> unique_constraint(:label)
   end
 end
