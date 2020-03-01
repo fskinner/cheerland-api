@@ -18,6 +18,7 @@ jobs:
       - checkout
 
       # specify any bash command here prefixed with `run: `
+      - run: MIX_ENV=test mix local.hex --force
       - run: MIX_ENV=test mix deps.get
       - run: MIX_ENV=test mix ecto.create
       - run: MIX_ENV=test mix test
