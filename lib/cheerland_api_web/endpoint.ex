@@ -40,5 +40,6 @@ defmodule CheerlandApiWeb.Endpoint do
     key: "_cheerland_api_key",
     signing_salt: "mFlGKIdf"
 
+  plug CORSPlug
   plug CheerlandApiWeb.Router
 end
