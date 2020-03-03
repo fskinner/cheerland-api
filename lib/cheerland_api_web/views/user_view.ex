@@ -15,7 +15,6 @@ defmodule CheerlandApiWeb.UserView do
       id: user.id,
       email: user.email,
       name: user.name,
-      encrypted_password: user.encrypted_password,
       gender: user.gender,
       reserved_at: user.reserved_at,
       needs_transportation: user.needs_transportation,

@@ -32,7 +32,7 @@ config :cheerland_api, CheerlandApi.Repo, migration_timestamps: [type: :utc_date
 # Guardian configuration
 config :cheerland_api, CheerlandApiWeb.Guardian,
   issuer: "CheerlandApi",
-  ttl: {7, :days},
+  ttl: {1, :days},
   allowed_drift: 2000,
   secret_key: System.get_env("SECRET") || "Zq5AjKfcIqTCQn6WZhNGhAaBmhdAZCeKKFc9TSNZy6ts4tk3ymjEJbKpFwAYIdfr"
 

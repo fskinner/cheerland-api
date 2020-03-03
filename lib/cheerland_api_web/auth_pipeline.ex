@@ -1,6 +1,6 @@
 defmodule CheerlandApiWeb.Guardian.AuthPipeline do
   use Guardian.Plug.Pipeline,
-    otp_app: :todo_with_auth,
+    otp_app: :cheerland_api,
     module: CheerlandApiWeb.Guardian,
     error_handler: CheerlandApiWeb.Guardian.AuthErrorHandler
 

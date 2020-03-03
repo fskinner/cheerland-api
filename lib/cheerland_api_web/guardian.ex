@@ -2,7 +2,13 @@ defmodule CheerlandApiWeb.Guardian do
   use Guardian, otp_app: :cheerland_api
 
   def subject_for_token(resource, _claims) do
-    sub = to_string(resource.id)
+    sub = Jason.encode!(%{
+      id: resource.id,
+      email: resource.email,
+      name: resource.name,
+      gender: resource.gender,
+      is_admin: resource.is_admin,
+    })
     {:ok, sub}
   end
 

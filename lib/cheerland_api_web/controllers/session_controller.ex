@@ -3,7 +3,6 @@ defmodule CheerlandApiWeb.SessionController do
 
   alias CheerlandApi.Auth
   alias CheerlandApi.Auth.User
-  alias CheerlandApiWeb.ErrorView
 
   plug(:scrub_params, "user" when action in [:create])
 
